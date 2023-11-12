@@ -6,10 +6,6 @@ require_once 'classes/Product.php';
 require_once 'functions/getSuccesMessage.php';
 
 
-$pdo = getConnection();
-
-
-
 $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 
 ?>
@@ -31,7 +27,7 @@ if (isset($_GET['succes'])) { ?>
     </div>
 <?php } 
 if (empty($_SESSION['cart'])) { ?>
-    <p class="ml-20 mb-8 text-xl tracking-tight font-bold text-gray-900">Votre panier est vide</p>
+    <p class="mb-32 mx-20 mt-10 text-3xl font-bold text-gray-900">Votre panier est vide</p>
 <?php } else {
     ?>
     <div class="mx-20 mb-10 relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -61,15 +57,16 @@ if (empty($_SESSION['cart'])) { ?>
                 $totalPrice = 0;
                 foreach ($cart as $productId => $quantity) {
 
-                    $product = new Product($pdo);
-                    $productDetails = $product->getProduct($productId);
-                    
-                    $totalPrice += $productDetails['price'] * $quantity;
+
+                     $productDetails = isset($_SESSION['product_details'][$productId]) ? $_SESSION['product_details'][$productId] : null;
+
+                     $totalPrice += $productDetails['price'] * $quantity;
+
                     if ($productDetails) {
                         ?>
                         <tr class="bg-white border-b hover:bg-gray-50 dark:hover:bg-gray-200">
                             <td class="p-4">
-                                <img src="uploads/profile_pictures/<?php
+                                <img src="uploads/product_images/<?php
                                 echo $productDetails['image_product']; ?>"
                                     class="w-16 md:w-25 max-w-full max-h-full" alt="<?php
                                     echo $productDetails['product_name']; ?>">
@@ -101,15 +98,20 @@ if (empty($_SESSION['cart'])) { ?>
                 <td>
                 <a href="delete.php?action=clear" class="font-medium text-red-600 dark:text-red-500 hover:underline">Vider le panier</a>
                 </td>
-            </tr> <?php
-}
-?>
+            </tr> 
             
         </tbody>
     </table>
 </div>
 
+<div class="flex justify-end mx-20 mt-10 mb-20">
+    <form action="order_process.php" method="POST">
+        <button type="submit" name="submit_order" class="focus:outline-none text-white bg-green-700 hover:bg-green-900 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-green-700 dark:hover:bg-green-900 dark:focus:ring-green-800 items-center">Valider le panier</button>
+    </form>
+</div>
 <?php
+
+}
 
 require_once 'layout/footer.php';
 ?>

@@ -40,7 +40,7 @@ require_once __DIR__ . '/classes/Product.php';
     <div class="gap-8 py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
         <?php if ($product['product_id'] == $id) {
             ?>
-            <img class="w-full hidden dark:block" src="uploads/profile_pictures/<?php echo $product['image_product']; ?>"
+            <img class="w-full hidden dark:block" src="uploads/product_images/<?php echo $product['image_product']; ?>"
                 alt="<?php echo $product['product_name']; ?> image">
             <div class="mt-4 md:mt-0">
                 <h2 class="mb-6 text-5xl tracking-tight font-bold text-gray-900">

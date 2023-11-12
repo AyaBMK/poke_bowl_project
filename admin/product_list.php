@@ -42,7 +42,7 @@ require_once '../functions/getSuccesMessage.php';
                     <tr class="bg-white border-b hover:bg-gray-10 dark:hover-bg-gray-100">
                         <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap">
                             <img class="w-24 h-24"
-                                src="../uploads/profile_pictures/<?php echo $product['image_product']; ?>"
+                                src="../uploads/product_images/<?php echo $product['image_product']; ?>"
                                 alt="<?php echo $product['product_name']; ?> image">
                             <div class="pl-3">
                                 <div class="text-base font-semibold">

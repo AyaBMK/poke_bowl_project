@@ -16,5 +16,6 @@ class AppError
     public const REQUIRED_FIELDS = 12;
     public const UPDATE_PRODUCT_ERROR = 13;
     public const EMAIL_ALREADY_EXISTS  = 14;
+    public const LOGIN_REQUIRED = 15;
 
 }

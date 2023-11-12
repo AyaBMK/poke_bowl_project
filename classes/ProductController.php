@@ -28,7 +28,7 @@ class ProductController
         $product = new Product($pdo); 
         
 
-        if (empty($product_name) || empty($price) || empty($product_description)) {
+        if (empty($product_name) || empty($price) || empty($product_description) || empty($product_name)) {
             Utils::redirect('form_create.php?error=' . AppError::REQUIRED_FIELDS);
         }
 
@@ -45,7 +45,7 @@ class ProductController
 
         $filename .= '.' . $imageProductExt;
 
-        $destination = __DIR__ . '/../uploads/profile_pictures/' . $filename;
+        $destination = __DIR__ . '/../uploads/product_images/' . $filename;
 
         if (!is_uploaded_file($image_product['tmp_name']) || $image_product['error'] !== UPLOAD_ERR_OK) {
             Utils::redirect('form_create.php?error=' . AppError::REGISTER_FILE_UPLOAD);
@@ -60,14 +60,25 @@ class ProductController
         Utils::redirect('index.php?succes=' . AppSucces::PRODUCT_ADDED);
     }
 
-    public static function updateProduct($id, $product_name, $image_product, $price, $product_description) {
+    public static function updateProductWithoutImage($id, $product_name, $price, $product_description) {
         $pdo = getConnection();
         $product = new Product($pdo);
-
-        if ($product->updateProduct($id, $product_name, $image_product, $price, $product_description)) {
+    
+        if ($product->updateProductWithoutImage($id, $product_name, $price, $product_description)) {
             Utils::redirect('index.php?succes=' . AppSucces::PRODUCT_UPDATED);
         } else {
-            Utils::redirect('index.php?error=' . AppError::UPDATE_PRODUCT_ERROR); 
+            Utils::redirect('index.php?error=' . AppError::UPDATE_PRODUCT_ERROR);
+        }
+    }
+
+    public static function updateProductWithImage($id, $product_name, $image_product, $price, $product_description) {
+        $pdo = getConnection();
+        $product = new Product($pdo);
+    
+        if ($product->updateProductWithImage($id, $product_name, $image_product, $price, $product_description)) {
+            Utils::redirect('index.php?succes=' . AppSucces::PRODUCT_UPDATED);
+        } else {
+            Utils::redirect('index.php?error=' . AppError::UPDATE_PRODUCT_ERROR);
         }
     }
 

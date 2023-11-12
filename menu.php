@@ -13,14 +13,14 @@ require_once 'classes/productSearch.php';
 $pdo = getConnection();
 
 
-if (isset($_GET['price']) && $_GET['price'] != '') {
+if (isset($_GET['price']) && !empty($_GET['price'])) {
     $priceInterval = $_GET['price'];
     $price = explode("-", $priceInterval);
     
     $products = ProductSearch::getProductByPrice($pdo, $price[0], $price[1]);
 }else{
 
-$products = ProductController::listProducts();
+    $products = ProductController::listProducts();
 
 }
 
@@ -59,7 +59,7 @@ $products = ProductController::listProducts();
 <div class="grid md:grid-cols-4 gap-8 place-items-center px-20">
     <?php foreach ($products as  $product) { ?>
         <div class="max-w-sm bg-white rounded-lg shadow dark:border-gray-700 mb-5">
-            <img class="rounded-t-lg" src="uploads/profile_pictures/<?php echo $product['image_product']; ?>"
+            <img class="rounded-t-lg" src="uploads/product_images/<?php echo $product['image_product']; ?>"
                 alt="<?php echo $product['product_name']; ?> image" />
             <div class="p-5">
                 <h5 class="mb-2 text-center font-bold tracking-tight text-gray-900">

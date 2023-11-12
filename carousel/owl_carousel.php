@@ -18,7 +18,7 @@ $products = ProductController::listProducts();
         <?php foreach($products as $product) { ?>
             <div class="max-w-sm bg-white rounded-lg shadow dark:border-gray-700 mb-4">
                 <a href="#">
-                    <img class="rounded-t-lg" src="../uploads/profile_pictures/<?php 
+                    <img class="rounded-t-lg" src="../uploads/product_images/<?php 
                     echo $product['image_product'];
                      ?>" alt="" />
                 </a>
