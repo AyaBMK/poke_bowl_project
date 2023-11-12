@@ -4,12 +4,9 @@ require_once '../classes/Product.php';
 require_once '../functions/db.php';
 require_once '../functions/getSuccesMessage.php';
 
-try {
-    $pdo = getConnection();
-} catch (PDOException) {
-    Utils::redirect('index.php?error=' . AppError::DB_CONNECTION);
-    exit;
-}
+
+$pdo = getConnection();
+
 
 $id = $_GET['updated_id'];
 $product = new Product($pdo);

@@ -3,9 +3,8 @@ require_once __DIR__ . '/../classes/MenuItem.php';
 
 $menuItems = [
   new MenuItem('index.php', 'Home'),
-  new MenuItem('about.php', 'A propos'),
   new MenuItem('menu.php', 'Menu'),
-  new MenuItem('contact.php', 'Contact')
+  new MenuItem('cart_shopping.php', 'Panier')
 ];
 
 ?>

@@ -4,18 +4,16 @@ require_once __DIR__ .'/../classes/ProductController.php';
 require_once __DIR__ .'/../functions/db.php';
 
 
-try {
-    $pdo = getConnection();
-} catch (PDOException) {
-    Utils::redirect('menu.php?error=' . AppError::DB_CONNECTION);
-}
+
+$pdo = getConnection();
+
 
 
 $products = ProductController::listProducts();
 
 ?>
 <div class="container mx-auto">
-    <h2 class="max-w-xl mb-4 text-xl font-bold tracking-tight leading-none md:text-2xl xl:text-2xl my-8 mx-40 p-2 border-l-4 border-indigo-500">Nos Plat</h2>
+    <h2 class="ml-40 mt-16 mb-16 p-2 border-l-4 border-black-indigo-500 text-5xl tracking-tight font-bold text-gray-900">Nos Plat</h2>
     <div class="owl-carousel owl-theme px-40">  
         <?php foreach($products as $product) { ?>
             <div class="max-w-sm bg-white rounded-lg shadow dark:border-gray-700 mb-4">

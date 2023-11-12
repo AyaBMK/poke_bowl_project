@@ -9,11 +9,9 @@ require_once 'classes/productController.php';
 require_once 'classes/productSearch.php';
 
 
-try {
-    $pdo = getConnection();
-} catch (PDOException) {
-    Utils::redirect('menu.php?error=' . AppError::DB_CONNECTION);
-}
+
+$pdo = getConnection();
+
 
 if (isset($_GET['price']) && $_GET['price'] != '') {
     $priceInterval = $_GET['price'];

@@ -56,6 +56,16 @@ $_SESSION['userInfos'] = [
 ];
 
 
+
+
+
+
+
+
+
+
+
+
 //   Utils::redirect('index.php');
 
 if($user['user_type'] === 0) {
